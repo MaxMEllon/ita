@@ -1,5 +1,6 @@
 const { h, render, Component, Text } = require('ink');
 const TextInput = require('ink-text-input');
+const List = require('./list');
 const fs = require('fs');
 
 const home = process.env.HOME;
@@ -30,7 +31,10 @@ class AddTodoComponent extends Component {
       );
       fs.writeFile(`${home}/.todo.json`, JSON.stringify({ todos }), (err) => {
         if (err) throw err;
-        process.exit();
+        render(<List />);
+        setTimtout(() => {
+          process.exit();
+        }, 500)
       })
     })
   }

@@ -38,16 +38,18 @@ class DoneComponent extends Component {
   render(props, state) {
     if (state.loading) return <ProgressSpinner characteds={spinners[25].split('')} />
     return (
-      <List onSubmit={this.handleSubmit}>
+      <div>
         <div>
           <Text yellow>Please select done todos.</Text>
         </div>
-        {
-          state.todos.map(todo => (
-            <ListItem value={todo}>{todo}</ListItem>
-          ))
-        }
-      </List>
+        <List onSubmit={this.handleSubmit}>
+          {
+            state.todos.map(todo => (
+              <ListItem value={todo}>{todo}</ListItem>
+            ))
+          }
+        </List>
+      </div>
     );
   }
 }
