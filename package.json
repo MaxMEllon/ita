@@ -1,7 +1,7 @@
 {
   "name": "ita",
-  "version": "0.1.0",
-  "main": "index.js",
+  "version": "0.1.1",
+  "main": "lib/index.js",
   "repository": "ssh://git@github.com/MaxMEllon/ita.git",
   "author": "MaxMEllon <maxmellon1994@gmail.com>",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "ink-progress-spinner": "git+https://github.com/MaxMEllon/ink-progress-spinner.git",
     "ink-redux": "^1.0.0",
     "ink-text-input": "^1.1.0",
+    "ita": "^0.1.0",
     "lodash": "^4.17.4"
   },
   "bin": {
