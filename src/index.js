@@ -1,4 +1,3 @@
-const program = require('commander');
 const { h, render } = require('ink');
 const fs = require('fs');
 const readline = require('readline');
@@ -38,7 +37,7 @@ const run = () => {
         const todos = JSON.parse(data).todos;
         const n = argv[1];
         todos.push(n);
-        fs.writeFile(`${home}/.todo.json`, JSON.stringify({ todos }), (err) => {
+        fs.writeFile(`${home}/.todo.json`, JSON.stringify({ todos, dones: data.dones }), (err) => {
           if (err) throw err;
           render(<List />);
           setTimeout(() => {

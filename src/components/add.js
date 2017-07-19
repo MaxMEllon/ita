@@ -29,7 +29,7 @@ class AddTodoComponent extends Component {
           <Text green>[{value}]</Text>
         </div>
       );
-      fs.writeFile(`${home}/.todo.json`, JSON.stringify({ todos }), (err) => {
+      fs.writeFile(`${home}/.todo.json`, JSON.stringify({ todos, dones: data.dones }), (err) => {
         if (err) throw err;
         render(<List />);
         setTimtout(() => {

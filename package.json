@@ -1,6 +1,6 @@
 {
   "name": "ita",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "main": "lib/index.js",
   "repository": "ssh://git@github.com/MaxMEllon/ita.git",
   "author": "MaxMEllon <maxmellon1994@gmail.com>",
@@ -18,6 +18,10 @@
   "bin": {
     "ita": "./bin/cli.js"
   },
+  "files": [
+    "lib",
+    "bin"
+  ], 
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-react-jsx": "^6.24.1"
