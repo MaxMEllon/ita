@@ -1,9 +1,11 @@
-// require('babel-polyfill');
 const program = require('commander');
 const { h, render } = require('ink');
 const fs = require('fs');
 const readline = require('readline');
+const { Provider } = require('ink-redux');
 const App = require('./containers/App');
+const { initialState } = require('./reducers');
+const createStore = require('./stores');
 
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
@@ -17,6 +19,14 @@ process.stdin.on('keypress', (chunk,  key) => {
   if (key && key.name === "c" && key.ctrl) process.exit();
 });
 
-const run = () => render(<App />);
+const store = createStore(initialState);
+
+const run = () => {
+  render((
+    <Provider store={store}>
+      <App />
+    </Provider>
+  ));
+};
 
 run();

@@ -1,22 +1,19 @@
 const { combineReducers } = require('redux');
 const { createReducer } = require('redux-act');
+const actions = require('../actions');
 
 const initalState = {
-  sample: '',
+  location: { href: '/' },
 };
 
 module.exports.initalState = initalState;
 
-const sample = createReducer({
-  'sample_action': () => {
-    return 'hoge'
+const location = createReducer({
+  [actions.pushLocation]: (_, payload) => {
+    return { href: payload };
   },
-}, initalState.sample);
-
-const reducer = combineReducers({
-  sample,
-});
+}, initalState.location);
 
 module.exports = combineReducers({
-  sample,
+  location,
 });

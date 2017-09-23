@@ -1,14 +1,11 @@
 const { take, fork, takeEvery } = require('redux-saga/effects');
 const actions = require('../actions');
 
-function* sampleSaga() {
-  while (true) {
-    yield take('sample_aciton');
-  }
+function* postTodoSaga() {
 }
 
 const rootSaga = function*() {
-  yield takeEvery('sample_actions', sampleSaga);
+  yield takeEvery(`${actions.tryPostTodo}`, postTodoSaga);
 }
 
 module.exports = rootSaga;

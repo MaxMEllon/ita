@@ -1,7 +1,10 @@
 const { createAction } = require('redux-act');
 
-const sampleAction = createAction('sample_action');
+const pushLocation = createAction('push_location');
+
+const tryPostTodo = createAction('try_post_todo');
 
 module.exports = {
-  sampleAction,
+  pushLocation,
+  tryPostTodo,
 };
