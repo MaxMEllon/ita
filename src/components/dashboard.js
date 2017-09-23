@@ -18,6 +18,9 @@ const Dashboard = ({ dispatch }) => {
       label: 'Report to slack',
       value: '/slack'
     }, {
+      label: '--------------',
+      value: ''
+    }, {
       label: 'Sign up User',
       value: '/users/new'
     }, {
@@ -27,6 +30,7 @@ const Dashboard = ({ dispatch }) => {
   )
 
   const onSelect = item => {
+    if (item.value === '') return;
     item.value >> actions.pushLocation >> dispatch;
   }
 

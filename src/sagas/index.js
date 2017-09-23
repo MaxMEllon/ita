@@ -15,7 +15,6 @@ function* postTodoSaga(action) {
   try {
     const state = yield select();
     const payload = R.merge(action.payload, { token: state.auth.data.token });
-    console.log(payload)
     const response = yield call(createTodoRequest, url(state, '/todos'), payload);
     yield put(actions.successPostTodo());
     console.info('Success to create of todo !!');
