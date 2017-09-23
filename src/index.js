@@ -1,4 +1,3 @@
-const program = require('commander');
 const { h, render } = require('ink');
 const fs = require('fs');
 const readline = require('readline');

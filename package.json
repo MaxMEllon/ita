@@ -1,7 +1,7 @@
 {
   "name": "ita",
-  "version": "0.1.0",
-  "main": "index.js",
+  "version": "0.1.6",
+  "main": "lib/index.js",
   "repository": "ssh://git@github.com/MaxMEllon/ita.git",
   "author": "MaxMEllon <maxmellon1994@gmail.com>",
   "license": "MIT",
@@ -25,6 +25,10 @@
   "bin": {
     "ita": "./bin/cli.js"
   },
+  "files": [
+    "lib",
+    "bin"
+  ], 
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-pipe-composition": "^0.1.1",
