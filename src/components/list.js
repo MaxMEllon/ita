@@ -1,45 +1,35 @@
-const { h, render, Component, Text } = require('ink');
-const TextInput = require('ink-text-input');
-const { spinners, ProgressSpinner } = require('ink-progress-spinner')
-const fs = require('fs');
+const { h, Component, Text, Indent } = require('ink');
+const { ProgressSpinner } = require('ink-progress-spinner');
+const Maybe = require('maybe-baby');
+const actions = require('../actions');
 
-const home = process.env.HOME;
+const spinners = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'.split('');
 
-class TodoList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: [],
-      loading: true,
-    };
-  }
-
+class List extends Component {
   componentDidMount() {
-    fs.readFile(`${home}/.todo.json`, 'utf8', (err, data) => {
-      const todos = JSON.parse(data).todos;
-      this.setState({ todos, loading: false });
-      setTimeout(() => {
-        process.exit();
-      }, 500);
-    })
+    if (this.props.todos.state === null) '/todos' >> actions.tryFetchTodoList >> this.props.dispatch;
   }
 
-  render(props, state) {
-    if (state.loading) return <ProgressSpinner characteds={spinners[25].split('')} />;
-    if (state.todos.length === 0) return <Text yellow>Nothing todo.</Text>
+  render(props) {
+    const { state } = props.todos;
+    if (state === null) return <ProgressSpinner characters={spinners} green />;
     return (
-      <span>
+      <div>
         {
-          state.todos.map(todo => (
+          state.map(todo => (
             <div>
-              <span> - </span>
-              <Text green>{todo}</Text>
+              <Text {...todo.color}>[{'='.repeat(todo.blockCount)}</Text>
+              <Text {...todo.color}>{' '.repeat(20 - todo.blockCount)}]</Text>
+              <span>  </span>
+              <Text {...todo.color}>{todo.percent.padStart(5)}</Text>
+              <span>  </span>
+              <Text>{todo.title}</Text>
             </div>
           ))
         }
-      </span>
-    );
+      </div>
+    )
   }
 }
 
-module.exports = TodoList;
+module.exports = List;
