@@ -10,9 +10,6 @@ const initalState = {
   auth: { data: null },
 };
 
-Config.restoreConfigAsync().then(data => (initalState.config.data = data));
-Auth.restoreAsync().then(data => (initalState.auth.data = data));
-
 module.exports.initalState = initalState;
 
 const location = createReducer({
@@ -21,7 +18,11 @@ const location = createReducer({
   },
 }, initalState.location);
 
-const config = createReducer({}, initalState.config);
+const config = createReducer({
+  [actions.initialized]: (_, payload) => {
+    return { data: payload };
+  },
+}, initalState.config);
 
 const auth = createReducer({
   [actions.successUserSignup]: (_, payload) => {

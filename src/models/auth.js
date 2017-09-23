@@ -3,15 +3,13 @@ const fs = require('fs');
 
 const configFileLocation = `${process.env.HOME}/.config/ita/auth.json`;
 
-process.on('unhandledRejection', console.dir);
-
 class Auth {
-  constructor(token) {
+  constructor({ token }) {
     this._token = token;
   }
 
   get token() {
-    return token;
+    return this._token;
   }
 
   static async dumpAsync(token) {
