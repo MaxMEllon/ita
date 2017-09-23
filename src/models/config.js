@@ -1,3 +1,4 @@
+const R = require('ramda');
 const fs = require('fs');
 
 const configFileLocation = `${process.env.HOME}/.config/ita/init.json`;
@@ -21,8 +22,8 @@ class Config {
     return this._backendServer;
   }
 
-  static async restoreConfig() {
-    if (!Config.isReadableConfigFile()) {
+  static async restoreConfigAsync() {
+    if (await Config.isReadableConfigFileAsync() >> R.not) {
       console.error('ita: ~/.config/ita/init.json を作成してください');
     }
     const promise = () => new Promise((resolve, reject) => {
@@ -41,7 +42,7 @@ class Config {
     }
   }
 
-  static async isReadableConfigFile() {
+  static async isReadableConfigFileAsync() {
     const promise = () => new Promise((resolve, reject) => {
       fs.access(configFileLocation, fs.constants.R_OK, err => {
         if (err) reject(false);

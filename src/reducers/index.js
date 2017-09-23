@@ -5,8 +5,11 @@ const Config = require('../models/config');
 
 const initalState = {
   location: { href: '/' },
-  config: { state: Config.restoreConfig() }
+  config: { data: null },
+  auth: { data: null },
 };
+
+Config.restoreConfigAsync().then(data => (initalState.config.data = data));
 
 module.exports.initalState = initalState;
 
@@ -18,7 +21,14 @@ const location = createReducer({
 
 const config = createReducer({}, initalState.config);
 
+const auth = createReducer({
+  [actions.successUserSignup]: (_, payload) => {
+    return { data: payload };
+  },
+}, initalState.auth);
+
 module.exports = combineReducers({
   location,
   config,
+  auth,
 });
