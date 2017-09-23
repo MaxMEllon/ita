@@ -11,6 +11,9 @@ const successPostTodo = createAction('success_post_todo');
 const tryUserSignup = createAction('try_user_signup');
 const successUserSignup = createAction('success_user_signup');
 
+const tryFetchTodoList = createAction('try_fetch_todo_list');
+const successFetchTodoList = createAction('success_fetch_todo_list');
+
 module.exports = {
   initialized,
   initialize,
@@ -19,4 +22,6 @@ module.exports = {
   successPostTodo,
   tryUserSignup,
   successUserSignup,
+  tryFetchTodoList,
+  successFetchTodoList,
 };

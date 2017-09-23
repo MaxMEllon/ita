@@ -15,6 +15,7 @@
     "ink-select-input": "^1.0.0",
     "ink-text-input": "^1.1.1",
     "lodash": "^4.17.4",
+    "maybe-baby": "^1.0.19",
     "ramda": "^0.24.1",
     "react-autobind": "^1.0.6",
     "redux": "^3.7.2",

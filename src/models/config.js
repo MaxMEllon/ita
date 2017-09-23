@@ -30,13 +30,11 @@ class Config {
     const promise = () => new Promise((resolve, reject) => {
       fs.readFile(configFileLocation, 'utf-8', (err, data) => {
         if (err) reject(err);
-        resolve(data);
+        data >> JSON.parse >> resolve;
       })
     });
     try {
-      const json = await promise();
-      const config = new Config(JSON.parse(json));
-      return config;
+      return new Config(await promise());
     } catch (_) {
       console.error('ita: ~/.config/ita/init.json のパースに失敗しました');
       process.exit(1);
