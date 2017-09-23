@@ -137,7 +137,7 @@ const slackActionCreator = (client, config) => ({
         fallback: '作業中',
         color: '#f9f339',
         fields: Todo.doing(list).map(todo => ({
-          title: `:cyclone: ${todo.percent.padStart(5)} ${todo.title}`
+          title: `:fire: ${todo.percent.padStart(5)} ${todo.title}`
         }))
       }]
     })
@@ -150,7 +150,7 @@ const slackActionCreator = (client, config) => ({
         fallback: '完了',
         color: '#39f339',
         fields: Todo.done(list).map(todo => ({
-          title: `:cyclone: ${todo.percent.padStart(5)} ${todo.title}`
+          title: `:clapping: ${todo.percent.padStart(5)} ${todo.title}`
         }))
       }]
     })
@@ -163,7 +163,7 @@ const slackActionCreator = (client, config) => ({
         fallback: '全作業',
         color: '#f9f3f9',
         fields: list.map(todo => ({
-          title: `:cyclone: ${todo.percent.padStart(5)} ${todo.title}`
+          title: `:white_check_mark: ${todo.percent.padStart(5)} ${todo.title}`
         }))
       }]
     })
