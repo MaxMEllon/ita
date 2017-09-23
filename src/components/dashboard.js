@@ -17,6 +17,12 @@ const Dashboard = ({ dispatch }) => {
     }, {
       label: 'Report to slack',
       value: '/slack'
+    }, {
+      label: 'Sign up User',
+      value: '/users/new'
+    }, {
+      label: 'Sign in User',
+      value: '/session/new'
     }]
   )
 
