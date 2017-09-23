@@ -4,6 +4,8 @@
 
 ## Demo
 
+![Demo movie](./.github/demo.gif)
+
 ## Config
 
 Please create file to the following place.
