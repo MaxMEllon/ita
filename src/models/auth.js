@@ -3,6 +3,8 @@ const fs = require('fs');
 
 const configFileLocation = `${process.env.HOME}/.config/ita/auth.json`;
 
+process.on('unhandledRejection', console.dir);
+
 class Auth {
   constructor(token) {
     this._token = token;
@@ -12,7 +14,7 @@ class Auth {
     return token;
   }
 
-  static async dumpAuthTokenAsync(token) {
+  static async dumpAsync(token) {
     const json = JSON.stringify({ token });
     const promise = () => new Promise((resolve, reject) => {
       fs.writeFile(configFileLocation, json, 'utf-8', err => {
@@ -23,8 +25,9 @@ class Auth {
     return await promise();
   }
 
-  static async restoreAuthTokenAsync() {
-    if (await Config.isReadableConfigFileAsync() >> R.not) return;
+  static async restoreAsync() {
+    const fileDoesExist = await Auth.isReadableConfigFileAsync();
+    if (R.not << fileDoesExist) return null;
     const promise = () => new Promise((resolve, reject) => {
       fs.readFile(configFileLocation, 'utf-8', (err, data) => {
         if (err) reject(err);
@@ -32,13 +35,13 @@ class Auth {
       })
     });
     const json = await promise();
-    const auth = new Auth(JSON.parse(json));
+    return new Auth(JSON.parse(json));
   }
 
   static async isReadableConfigFileAsync() {
-    const promise = () => new Promise((resolve, reject) => {
+    const promise = () => new Promise(resolve => {
       fs.access(configFileLocation, fs.constants.R_OK, err => {
-        if (err) reject(false);
+        if (err) resolve(false);
         resolve(true);
       })
     });

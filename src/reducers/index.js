@@ -2,6 +2,7 @@ const { combineReducers } = require('redux');
 const { createReducer } = require('redux-act');
 const actions = require('../actions');
 const Config = require('../models/config');
+const Auth = require('../models/auth');
 
 const initalState = {
   location: { href: '/' },
@@ -10,6 +11,7 @@ const initalState = {
 };
 
 Config.restoreConfigAsync().then(data => (initalState.config.data = data));
+Auth.restoreAsync().then(data => (initalState.auth.data = data));
 
 module.exports.initalState = initalState;
 

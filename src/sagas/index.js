@@ -17,7 +17,7 @@ function* signupUserSaga(action) {
   const state = yield select();
   try {
     const response = yield call(signupRequest, url(state, '/users/sign_up'), payload);
-    const auth = yield call(Auth.dumpAuthTokenAsync, response.data.token);
+    const auth = yield call(Auth.dumpAsync, response.data.token);
     yield put(actions.successUserSignup(auth));
     yield delay(300)
     yield put(actions.pushLocation('/'));

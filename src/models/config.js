@@ -23,7 +23,8 @@ class Config {
   }
 
   static async restoreConfigAsync() {
-    if (await Config.isReadableConfigFileAsync() >> R.not) {
+    const fileDoesExist = await Config.isReadableConfigFileAsync();
+    if (R.not << fileDoesExist) {
       console.error('ita: ~/.config/ita/init.json を作成してください');
     }
     const promise = () => new Promise((resolve, reject) => {
@@ -43,9 +44,9 @@ class Config {
   }
 
   static async isReadableConfigFileAsync() {
-    const promise = () => new Promise((resolve, reject) => {
+    const promise = () => new Promise(resolve => {
       fs.access(configFileLocation, fs.constants.R_OK, err => {
-        if (err) reject(false);
+        if (err) resolve(false);
         resolve(true);
       })
     });
