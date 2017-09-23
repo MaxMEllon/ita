@@ -7,6 +7,7 @@ const Additional = require('../components/additional');
 const Signup = require('../components/signup');
 const List = require('../components/list');
 const Updating = require('../components/updating');
+const Slack = require('../components/slack');
 const actions = require('../actions');
 
 const spinners = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'.split('');
@@ -24,6 +25,8 @@ class App extends Component {
         return <Additional dispatch={dispatch} />;
       case '/users/new':
         return <Signup dispatch={dispatch} />;
+      case '/slack':
+        return <Slack dispatch={dispatch} todos={todos} />;
       case '/loading':
         return <ProgressSpinner characters={spinners} green />
       default:

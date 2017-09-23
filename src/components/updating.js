@@ -59,6 +59,9 @@ class Updating extends Component {
         }
         break;
       }
+      case 'return': {
+        this.state >> actions.tryUpdateTodo >> this.props.dispatch;
+      }
     }
   }
 
@@ -82,6 +85,8 @@ class Updating extends Component {
         const todo = Todo.find(state.id, props.todos.state);
         return (
           <span>
+            <Text>{todo.title} (current: {todo.percent.padStart(5)})</Text>
+            <br />
             <Text>[{'='.repeat(state.progress)}</Text>
             <Text>{' '.repeat(20 - state.progress)}]</Text>
             <span>  </span>

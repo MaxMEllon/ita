@@ -14,6 +14,11 @@ const successUserSignup = createAction('success_user_signup');
 const tryFetchTodoList = createAction('try_fetch_todo_list');
 const successFetchTodoList = createAction('success_fetch_todo_list');
 
+const tryUpdateTodo = createAction('try_update_todo');
+const successUpdateTodo = createAction('success_update_todo');
+
+const reportToSlack = createAction('report_to_slack');
+
 module.exports = {
   initialized,
   initialize,
@@ -24,4 +29,7 @@ module.exports = {
   successUserSignup,
   tryFetchTodoList,
   successFetchTodoList,
+  tryUpdateTodo,
+  successUpdateTodo,
+  reportToSlack,
 };

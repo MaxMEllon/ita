@@ -10,11 +10,11 @@ class Config {
     this._backendServer = backendServer;
   }
 
-  get url() {
+  get slackUrl() {
     return this._slackUrl;
   }
 
-  get channel() {
+  get slackChannel() {
     return this._slackChannel;
   }
 
