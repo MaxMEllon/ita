@@ -6,6 +6,12 @@
 
 ![Demo movie](./.github/demo.gif)
 
+## Installation
+
+```
+$ npm i -g ita
+```
+
 ## Config
 
 Please create file to the following place.
