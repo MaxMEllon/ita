@@ -1,11 +1,11 @@
-const { h, Component, Text, Indent } = require('ink');
-const { ProgressSpinner } = require('ink-progress-spinner');
-const SelectInput = require('ink-select-input');
-const Maybe = require('maybe-baby');
-const autoBind = require('react-autobind');
-const actions = require('../actions');
+const { h, Component, Text, Indent } = require("ink");
+const { ProgressSpinner } = require("ink-progress-spinner");
+const SelectInput = require("ink-select-input");
+const Maybe = require("maybe-baby");
+const autoBind = require("react-autobind");
+const actions = require("../actions");
 
-const spinners = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'.split('');
+const spinners = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏".split("");
 
 class Slack extends Component {
   constructor(props) {
@@ -14,29 +14,36 @@ class Slack extends Component {
   }
 
   componentDidMount() {
-    if (this.props.todos.state === null) '/slack' >> actions.tryFetchTodoList >> this.props.dispatch;
+    if (this.props.todos.state === null)
+      ("/slack" >> actions.tryFetchTodoList) >> this.props.dispatch;
   }
 
   get items() {
-    return [{
-      label: 'done',
-      value: 'done',
-    }, {
-      label: 'doing',
-      value: 'doing',
-    }, {
-      label: 'todo',
-      value: 'todo',
-    }, {
-      label: 'all',
-      value: 'all',
-    }]
+    return [
+      {
+        label: "done",
+        value: "done"
+      },
+      {
+        label: "doing",
+        value: "doing"
+      },
+      {
+        label: "todo",
+        value: "todo"
+      },
+      {
+        label: "all",
+        value: "all"
+      }
+    ];
   }
 
   onSelect(item) {
     const _ =
-      { type: item.value, todos: this.props.todos.state }
-      >> actions.reportToSlack >> this.props.dispatch;
+      ({ type: item.value, todos: this.props.todos.state } >>
+        actions.reportToSlack) >>
+      this.props.dispatch;
   }
 
   render(props) {
@@ -44,12 +51,9 @@ class Slack extends Component {
     if (state === null) return <ProgressSpinner characters={spinners} green />;
     return (
       <span>
-        <SelectInput
-          items={this.items}
-          onSelect={this.onSelect}
-        />
+        <SelectInput items={this.items} onSelect={this.onSelect} />
       </span>
-    )
+    );
   }
 }
 

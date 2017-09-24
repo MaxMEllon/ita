@@ -1,24 +1,24 @@
-const { h, Component, Text } = require('ink');
-const autoBind = require('react-autobind');
-const TextInput = require('ink-text-input');
-const actions = require('../actions');
+const { h, Component, Text } = require("ink");
+const autoBind = require("react-autobind");
+const TextInput = require("ink-text-input");
+const actions = require("../actions");
 
 class Additional extends Component {
   constructor() {
     super();
     this.state = {
       todo: {
-        title: '',
+        title: ""
       }
     };
     autoBind(this);
   }
 
   onChangeAndSubmit(chunk, key) {
-    console.log('')
-    if (key.name === 'return') {
-      this.state >> actions.tryPostTodo >> this.props.dispatch;
-    } else if (key.name === 'backspace') {
+    console.log("");
+    if (key.name === "return") {
+      (this.state >> actions.tryPostTodo) >> this.props.dispatch;
+    } else if (key.name === "backspace") {
       const { length } = this.state.todo.title;
       const title = this.state.todo.title.slice(0, length - 1);
       this.setState({ todo: { title } });
@@ -29,11 +29,11 @@ class Additional extends Component {
   }
 
   componentDidMount() {
-    process.stdin.on('keypress', this.onChangeAndSubmit);
+    process.stdin.on("keypress", this.onChangeAndSubmit);
   }
 
   componentDidUnmount() {
-    process.stdin.removeListener('keypress', this.onChangeAndSubmit);
+    process.stdin.removeListener("keypress", this.onChangeAndSubmit);
   }
 
   render(_, state) {
@@ -42,7 +42,7 @@ class Additional extends Component {
         Enter your todo:
         <Text> {this.state.todo.title}_</Text>
       </div>
-    )
+    );
   }
 }
 

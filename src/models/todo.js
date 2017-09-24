@@ -28,11 +28,11 @@ class Todo {
   get color() {
     const { progress } = this;
     switch (true) {
-      case (progress === 0):
+      case progress === 0:
         return { red: true };
-      case (progress < 100):
+      case progress < 100:
         return { yellow: true };
-      case (progress === 100):
+      case progress === 100:
         return { green: true };
       default:
         return { blue: true };

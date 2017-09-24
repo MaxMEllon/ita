@@ -1,13 +1,13 @@
-const _ = require('lodash');
-const axios = require('axios');
+const _ = require("lodash");
+const axios = require("axios");
 
 class Slack {
   get defaultOptions() {
     return {
-      username: 'めろんぐま',
-      icon_emoji: ':guma:',
-      text: '',
-      channel: '#general',
+      username: "めろんぐま",
+      icon_emoji: ":guma:",
+      text: "",
+      channel: "#general"
     };
   }
 

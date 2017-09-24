@@ -31,8 +31,13 @@
   ],
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^8.0.0",
     "babel-plugin-pipe-composition": "^0.1.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1"
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "eslint": "^4.7.2",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.0"
   },
   "scripts": {
     "build": "babel src --out-dir lib"

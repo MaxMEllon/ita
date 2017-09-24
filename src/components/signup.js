@@ -1,21 +1,21 @@
-const R = require('ramda');
-const { h, render, Component, Indent } = require('ink');
-const autoBind = require('react-autobind');
-const TextInput = require('ink-text-input');
-const PasswordInput = require('ink-password-input');
-const actions = require('../actions');
+const R = require("ramda");
+const { h, render, Component, Indent } = require("ink");
+const autoBind = require("react-autobind");
+const TextInput = require("ink-text-input");
+const PasswordInput = require("ink-password-input");
+const actions = require("../actions");
 
 class Signup extends Component {
   constructor() {
     super();
     this.state = {
       user: {
-        email: '',
-        password: '',
-        password_confirmation: '',
+        email: "",
+        password: "",
+        password_confirmation: ""
       },
-      step: 0,
-    }
+      step: 0
+    };
     autoBind(this);
   }
 
@@ -36,7 +36,7 @@ class Signup extends Component {
 
   onSubmit() {
     const { user } = this.state;
-    const _ = { user } >> actions.tryUserSignup >> this.props.dispatch;
+    const _ = ({ user } >> actions.tryUserSignup) >> this.props.dispatch;
   }
 
   incrementStep() {
@@ -49,7 +49,7 @@ class Signup extends Component {
         return (
           <div>
             Enter your email:
-            <span> </span>
+            <span />
             <TextInput
               value={state.user.email}
               onChange={this.onChangeEmail}
@@ -61,7 +61,7 @@ class Signup extends Component {
         return (
           <div>
             Enter your password:
-            <span> </span>
+            <span />
             <PasswordInput
               value={state.user.password}
               placeholder="-------------------"
@@ -69,12 +69,12 @@ class Signup extends Component {
               onSubmit={this.incrementStep}
             />
           </div>
-        )
+        );
       case 2:
         return (
           <div>
             Enter your password (confirmation):
-            <span> </span>
+            <span />
             <PasswordInput
               value={state.user.password_confirmation}
               placeholder="----------"
@@ -82,7 +82,7 @@ class Signup extends Component {
               onSubmit={this.onSubmit}
             />
           </div>
-        )
+        );
       default:
         return null;
     }
