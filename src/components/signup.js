@@ -1,46 +1,46 @@
-const R = require("ramda");
-const { h, render, Component, Indent } = require("ink");
-const autoBind = require("react-autobind");
-const TextInput = require("ink-text-input");
-const PasswordInput = require("ink-password-input");
-const actions = require("../actions");
+const R = require('ramda')
+const { h, Component } = require('ink')
+const autoBind = require('react-autobind')
+const TextInput = require('ink-text-input')
+const PasswordInput = require('ink-password-input')
+const actions = require('../actions')
 
 class Signup extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       user: {
-        email: "",
-        password: "",
-        password_confirmation: ""
+        email: '',
+        password: '',
+        password_confirmation: ''
       },
       step: 0
-    };
-    autoBind(this);
+    }
+    autoBind(this)
   }
 
   onChangeEmail(email) {
-    const user = { email } >> R.merge(this.state.user);
-    this.setState({ user: user });
+    const user = { email } >> R.merge(this.state.user)
+    this.setState({ user: user })
   }
 
   onChangePassword(password) {
-    const user = { password } >> R.merge(this.state.user);
-    this.setState({ user: user });
+    const user = { password } >> R.merge(this.state.user)
+    this.setState({ user: user })
   }
 
   onChangePasswordConfirmation(password_confirmation) {
-    const user = { password_confirmation } >> R.merge(this.state.user);
-    this.setState({ user: user });
+    const user = { password_confirmation } >> R.merge(this.state.user)
+    this.setState({ user: user })
   }
 
   onSubmit() {
-    const { user } = this.state;
-    const _ = ({ user } >> actions.tryUserSignup) >> this.props.dispatch;
+    const { user } = this.state
+    const _ = ({ user } >> actions.tryUserSignup) >> this.props.dispatch
   }
 
   incrementStep() {
-    this.setState({ step: this.state.step + 1 });
+    this.setState({ step: this.state.step + 1 })
   }
 
   render(_, state) {
@@ -56,7 +56,7 @@ class Signup extends Component {
               onSubmit={this.incrementStep}
             />
           </div>
-        );
+        )
       case 1:
         return (
           <div>
@@ -69,7 +69,7 @@ class Signup extends Component {
               onSubmit={this.incrementStep}
             />
           </div>
-        );
+        )
       case 2:
         return (
           <div>
@@ -82,11 +82,11 @@ class Signup extends Component {
               onSubmit={this.onSubmit}
             />
           </div>
-        );
+        )
       default:
-        return null;
+        return null
     }
   }
 }
 
-module.exports = Signup;
+module.exports = Signup

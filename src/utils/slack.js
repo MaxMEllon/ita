@@ -1,27 +1,27 @@
-const _ = require("lodash");
-const axios = require("axios");
+const _ = require('lodash')
+const axios = require('axios')
 
 class Slack {
   get defaultOptions() {
     return {
-      username: "めろんぐま",
-      icon_emoji: ":guma:",
-      text: "",
-      channel: "#general"
-    };
+      username: 'めろんぐま',
+      icon_emoji: ':guma:',
+      text: '',
+      channel: '#general'
+    }
   }
 
   constructor(url) {
-    this.url = url;
+    this.url = url
   }
 
   post(options) {
-    const opt = _.assign({}, this.defaultOptions, options);
+    const opt = _.assign({}, this.defaultOptions, options)
     return axios
       .post(this.url, opt)
-      .then(res => console.log(res.status + res.data))
-      .catch(err => console.error(err));
+      .then(res => console.info(res.status + res.data))
+      .catch(err => console.error(err))
   }
 }
 
-module.exports = Slack;
+module.exports = Slack
